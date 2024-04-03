@@ -1,18 +1,39 @@
-import button from "partials/button/button.hbs";
-import input from "partials/input/input.hbs";
-import h1 from "partials/typography/h1/h1.hbs";
 import { locales } from "stores/locales";
-import { TEXTS } from "./texts";
 import { capitalizeFirst } from "shared/utils/capitalize-first";
+import { getFormValues } from "shared/utils/getFormValues";
+
+import { TEXTS } from "./texts";
+import login from "./login.hbs";
+
+import styles from "./styles.module.scss";
 
 export const Login = () => {
   const lang = locales.get().lang;
   const texts = TEXTS[lang] || TEXTS["ru"];
-  const title = h1({ text: capitalizeFirst(texts.enter) });
-  const name_input = input({ placeholder: texts.name });
-  const submit_button = button({ label: capitalizeFirst(texts.enter) });
   const wrapper = document.createElement("div");
-  wrapper.classList.add("form");
-  wrapper.innerHTML = `${title}${name_input}${submit_button}`;
+
+  const html = login({
+    title: { text: capitalizeFirst(texts.entrance) },
+    nameField: { placeholder: texts.name, name: "login" },
+    passwordField: { placeholder: texts.password, name: "password" },
+    button: {
+      label: capitalizeFirst(texts.enter),
+      type: "submit",
+      id: "login-submit",
+    },
+    signUpLink: { href: "/signup", text: capitalizeFirst(texts.signUp) },
+  });
+
+  const submitHandler = (e: Event) => {
+    e.preventDefault();
+    console.log(getFormValues("#login-form"));
+  };
+
+  wrapper.classList.add(styles.wrapper);
+  wrapper.innerHTML = html;
+
+  const form = wrapper.querySelector("#login-form");
+  form?.addEventListener("submit", submitHandler);
+
   return wrapper;
 };

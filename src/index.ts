@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import { registerPartials } from "./partials";
 import "./styles/styles.scss";
 
 import { Login } from "pages/login";
@@ -8,6 +8,7 @@ const ROOTS = {
   login: Login,
   signup: SignUp,
 };
+registerPartials();
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.querySelector("#app");
