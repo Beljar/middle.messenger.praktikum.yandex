@@ -1,10 +1,26 @@
 export const TEXTS = {
   en: {
-    signUp: "sign up",
+    registration: "registration",
     name: "name",
+    surname: "surname",
+    login: "login",
+    email: "email",
+    password: "password",
+    passwordRepeat: "repeat password",
+    phone: "phone",
+    signUp: "sign up",
+    enter: "sign in",
   },
   ru: {
-    signUp: "зарегистрировать",
+    registration: "регистрация",
     name: "имя",
+    surname: "фамилия",
+    login: "логин",
+    email: "email",
+    password: "пароль",
+    passwordRepeat: "пароль (еще раз)",
+    phone: "телефон",
+    signUp: "зарегистрироваться",
+    enter: "войти",
   },
 };

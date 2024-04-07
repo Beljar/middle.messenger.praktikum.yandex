@@ -1,18 +1,47 @@
-import button from "partials/button/button.hbs";
-import input from "partials/input/input.hbs";
-import h1 from "partials/typography/h1/h1.hbs";
 import { locales } from "stores/locales";
-import { TEXTS } from "./texts";
 import { capitalizeFirst } from "shared/utils/capitalize-first";
+import { getFormValues } from "shared/utils/getFormValues";
+
+import { TEXTS } from "./texts";
+import signup from "./signUp.hbs";
+
+import styles from "./styles.module.scss";
 
 export const SignUp = () => {
   const lang = locales.get().lang;
   const texts = TEXTS[lang] || TEXTS["ru"];
-  const title = h1({ text: capitalizeFirst(texts.signUp) });
-  const name_input = input({ placeholder: texts.name });
-  const submit_button = button({ label: capitalizeFirst(texts.signUp) });
   const wrapper = document.createElement("div");
-  wrapper.classList.add("form");
-  wrapper.innerHTML = `${title}${name_input}${submit_button}`;
+
+  const html = signup({
+    title: { text: capitalizeFirst(texts.registration) },
+    emailField: { placeholder: texts.email, name: "email" },
+    loginField: { placeholder: texts.login, name: "login" },
+    nameField: { placeholder: texts.name, name: "first_name" },
+    surnameField: { placeholder: texts.surname, name: "second_name" },
+    phoneField: { placeholder: texts.phone, name: "phone" },
+    passwordField: { placeholder: texts.password, name: "password" },
+    passwordRepeatField: {
+      placeholder: texts.passwordRepeat,
+      name: "passwordRepeat",
+    },
+    button: {
+      label: capitalizeFirst(texts.signUp),
+      type: "submit",
+      id: "signup-submit",
+    },
+    loginLink: { href: "/login", text: capitalizeFirst(texts.enter) },
+  });
+
+  const submitHandler = (e: Event) => {
+    e.preventDefault();
+    console.log(getFormValues("#signup-form"));
+  };
+
+  wrapper.classList.add(styles.wrapper);
+  wrapper.innerHTML = html;
+
+  const form = wrapper.querySelector("#signup-form");
+  form?.addEventListener("submit", submitHandler);
+
   return wrapper;
 };

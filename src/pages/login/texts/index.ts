@@ -1,6 +1,6 @@
 export const TEXTS = {
   en: {
-    enter: "enter",
+    enter: "sign in",
     entrance: "enter",
     name: "name",
     password: "password",
