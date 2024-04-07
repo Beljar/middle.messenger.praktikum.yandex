@@ -34,7 +34,7 @@ export const SignUp = () => {
 
   const submitHandler = (e: Event) => {
     e.preventDefault();
-    console.log(getFormValues("#signup-form"));
+    console.log(getFormValues("signup-form"));
   };
 
   wrapper.classList.add(styles.wrapper);

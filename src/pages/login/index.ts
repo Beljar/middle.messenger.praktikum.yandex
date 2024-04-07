@@ -26,7 +26,8 @@ export const Login = () => {
 
   const submitHandler = (e: Event) => {
     e.preventDefault();
-    console.log(getFormValues("#login-form"));
+    console.log(getFormValues("login-form"));
+    window.location = "/chats";
   };
 
   wrapper.classList.add(styles.wrapper);
