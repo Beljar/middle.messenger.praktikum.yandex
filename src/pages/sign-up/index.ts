@@ -6,10 +6,11 @@ import { TEXTS } from "./texts";
 import signup from "./signUp.hbs";
 
 import styles from "./styles.module.scss";
+import { LANG } from "constants";
 
 export const SignUp = () => {
   const lang = locales.get().lang;
-  const texts = TEXTS[lang] || TEXTS["ru"];
+  const texts = TEXTS[lang] || TEXTS[LANG.RU];
   const wrapper = document.createElement("div");
 
   const html = signup({

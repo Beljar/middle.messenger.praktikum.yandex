@@ -14,9 +14,13 @@ registerPartials();
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.querySelector("#app");
-  const path = window.location.pathname.trim().split("/").filter(Boolean);
+  const path = window.location.pathname
+    .trim()
+    .split("/")
+    .filter(Boolean) as (keyof typeof ROOTS)[];
   root?.appendChild(ROOTS[path[0]]?.() || ROOTS.login());
   const element = document.querySelector(".chat");
-  element.scrollTop = element.scrollHeight;
-  console.log(element.scrollHeight);
+  if (element) {
+    element.scrollTop = element.scrollHeight;
+  }
 });

@@ -1,10 +1,12 @@
+import { LANG } from "constants";
+
 export const TEXTS = {
-  en: {
+  [LANG.EN]: {
     enterMessage: "type message",
     send: "send",
     profile: "profile",
   },
-  ru: {
+  [LANG.RU]: {
     enterMessage: "введите сообщение",
     send: "отправить",
     profile: "профиль",

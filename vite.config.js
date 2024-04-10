@@ -6,6 +6,9 @@ import handlebars from "./src/vite-plugin-handlebars-precompile";
 export default defineConfig({
   root: resolve(__dirname),
   base: "./assets",
+  server: {
+    port: 3000,
+  },
   build: {
     outDir: resolve(__dirname, "dist"),
   },
@@ -15,6 +18,7 @@ export default defineConfig({
       partials: resolve(__dirname, "./src/partials"),
       stores: resolve(__dirname, "./src/stores"),
       shared: resolve(__dirname, "./src/shared"),
+      constants: resolve(__dirname, "./src/constants"),
     },
   },
   plugins: [

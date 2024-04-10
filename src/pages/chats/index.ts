@@ -14,10 +14,11 @@ import { TEXTS } from "./texts";
 
 import { chatListMock } from "./chatList/mocks";
 import { chatMock } from "./chat/mocks";
+import { LANG } from "constants";
 
 export const Chats = () => {
   const lang = locales.get().lang;
-  const texts = TEXTS[lang] || TEXTS["ru"];
+  const texts = TEXTS[lang] || TEXTS[LANG.RU];
   const wrapper = document.createElement("div");
 
   const html = chats({

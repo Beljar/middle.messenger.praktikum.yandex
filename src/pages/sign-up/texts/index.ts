@@ -1,5 +1,7 @@
+import { LANG } from "constants";
+
 export const TEXTS = {
-  en: {
+  [LANG.EN]: {
     registration: "registration",
     name: "name",
     surname: "surname",
@@ -11,7 +13,7 @@ export const TEXTS = {
     signUp: "sign up",
     enter: "sign in",
   },
-  ru: {
+  [LANG.RU]: {
     registration: "регистрация",
     name: "имя",
     surname: "фамилия",

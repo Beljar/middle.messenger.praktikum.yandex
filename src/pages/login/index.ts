@@ -6,10 +6,11 @@ import { TEXTS } from "./texts";
 import login from "./login.hbs";
 
 import styles from "./styles.module.scss";
+import { LANG } from "constants";
 
 export const Login = () => {
   const lang = locales.get().lang;
-  const texts = TEXTS[lang] || TEXTS["ru"];
+  const texts = TEXTS[lang] || TEXTS[LANG.RU];
   const wrapper = document.createElement("div");
 
   const html = login({
@@ -27,7 +28,7 @@ export const Login = () => {
   const submitHandler = (e: Event) => {
     e.preventDefault();
     console.log(getFormValues("login-form"));
-    window.location = "/chats";
+    window.location.href = "/chats";
   };
 
   wrapper.classList.add(styles.wrapper);
