@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "start": "vite build && node server.cjs",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -15,6 +16,7 @@
     "vite-plugin-handlebars": "^2.0.0"
   },
   "dependencies": {
+    "express": "^4.19.2",
     "handlebars": "^4.7.8"
   }
 }

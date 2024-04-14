@@ -4,11 +4,13 @@ import { registerPartials } from "./partials";
 import { Login } from "pages/login";
 import { SignUp } from "pages/sign-up";
 import { Chats } from "pages/chats";
+import { Profile } from "pages/profile";
 
 const ROOTS = {
   login: Login,
   signup: SignUp,
   chats: Chats,
+  profile: Profile,
 };
 registerPartials();
 

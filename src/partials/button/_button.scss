@@ -17,10 +17,19 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  &.outline {
+    background-color: white;
+    border: 2px solid $color-accent;
+    color: $color-accent;
+  }
 }
 
 .button:hover {
   background-color: $color-accent-light;
+  &.outline {
+    color: white;
+    border: 2px solid $color-accent-light;
+  }
 }
 
 .button:focus,
