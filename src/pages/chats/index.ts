@@ -9,7 +9,7 @@ import "./profilePanel/index";
 
 import chats from "./chats.hbs";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 import { TEXTS } from "./texts";
 
 import { chatListMock } from "./chatList/mocks";
@@ -48,9 +48,10 @@ export const Chats = () => {
         text: capitalizeFirst(texts.profile),
       },
     },
+    styles,
   });
 
-  wrapper.classList.add("chats");
+  wrapper.classList.add(styles.wrapper);
   wrapper.innerHTML = html;
   return wrapper;
 };
