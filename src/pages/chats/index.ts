@@ -17,7 +17,7 @@ import { TEXTS } from './texts';
 export const Chats = () => {
   const lang = locales.get().lang;
   const texts = TEXTS[lang] || TEXTS[LANG.RU];
-  const wrapper = document.createElement('div');
+  const wrapper = document.createElement('main');
 
   const html = chats({
     chatList: {

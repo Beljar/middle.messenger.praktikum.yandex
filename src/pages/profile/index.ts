@@ -14,6 +14,6 @@ export const Profile = () => {
     .split('/')
     .reverse()
     .filter(Boolean) as (keyof typeof ROUTES)[];
-  console.log(path);
+
   return ROUTES[path[0]]?.() || ROUTES.view();
 };

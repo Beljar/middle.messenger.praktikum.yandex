@@ -13,7 +13,7 @@ const RESET_BTN_ID = 'reset_button';
 export const ProfileEdit = () => {
   const lang = locales.get().lang;
   const texts = TEXTS[lang] || TEXTS[LANG.RU];
-  const wrapper = document.createElement('div');
+  const wrapper = document.createElement('main');
   const html = profileEdit({
     ...profileMock,
     avatar: { id: 'avatar' },
