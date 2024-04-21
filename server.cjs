@@ -1,18 +1,19 @@
-let express = require("express");
+let express = require('express');
 let app = express();
-const path = require("path");
+const path = require('path');
+
+const PORT = 3000;
 
 const router = express.Router();
 
-app.use(express.static(path.resolve(__dirname, "dist")));
+app.use(express.static(path.resolve(__dirname, 'dist')));
 
-console.log("t");
+console.log(`server running at port ${PORT}`);
 
-router.get("*", (req, res, next) => {
-  console.log(path.resolve(__dirname, "dist/index.html"));
-  res.sendFile(path.resolve(__dirname, "dist/index.html"));
+router.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 });
 
-app.use("", router);
+app.use('', router);
 
-app.listen(3000);
+app.listen(PORT);
