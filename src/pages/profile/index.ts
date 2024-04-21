@@ -1,6 +1,6 @@
-import { ChangePassword } from "./change-password";
-import { ProfileEdit } from "./profile-edit";
-import { ProfileView } from "./profile-view";
+import { ChangePassword } from './change-password';
+import { ProfileEdit } from './profile-edit';
+import { ProfileView } from './profile-view';
 
 const ROUTES = {
   view: ProfileView,
@@ -11,7 +11,7 @@ const ROUTES = {
 export const Profile = () => {
   const path = window.location.pathname
     .trim()
-    .split("/")
+    .split('/')
     .reverse()
     .filter(Boolean) as (keyof typeof ROUTES)[];
   console.log(path);

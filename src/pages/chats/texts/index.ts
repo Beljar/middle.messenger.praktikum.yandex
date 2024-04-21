@@ -1,14 +1,14 @@
-import { LANG } from "constants";
+import { LANG } from 'constants';
 
 export const TEXTS = {
   [LANG.EN]: {
-    enterMessage: "type message",
-    send: "send",
-    profile: "profile",
+    enterMessage: 'type message',
+    send: 'send',
+    profile: 'profile',
   },
   [LANG.RU]: {
-    enterMessage: "введите сообщение",
-    send: "отправить",
-    profile: "профиль",
+    enterMessage: 'введите сообщение',
+    send: 'отправить',
+    profile: 'профиль',
   },
 };

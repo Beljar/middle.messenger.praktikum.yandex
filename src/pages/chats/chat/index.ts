@@ -1,9 +1,8 @@
-import Handlebars from "handlebars/runtime";
+import './bubble/index';
+import './styles.scss';
 
-import "./bubble/index";
+import Handlebars from 'handlebars/runtime';
 
-import chat from "./chat.hbs";
+import chat from './chat.hbs';
 
-import "./styles.scss";
-
-Handlebars.registerPartial("chat", chat);
+Handlebars.registerPartial('chat', chat);

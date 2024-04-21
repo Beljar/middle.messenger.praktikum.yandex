@@ -1,48 +1,47 @@
-import { locales } from "stores/locales";
-import { capitalizeFirst } from "shared/utils/capitalize-first";
-import { getFormValues } from "shared/utils/getFormValues";
+import { LANG } from 'constants';
+import { capitalizeFirst } from 'shared/utils/capitalize-first';
+import { getFormValues } from 'shared/utils/getFormValues';
+import { locales } from 'stores/locales';
 
-import { TEXTS } from "./texts";
-import signup from "./signUp.hbs";
-
-import styles from "./styles.module.scss";
-import { LANG } from "constants";
+import signup from './signUp.hbs';
+import styles from './styles.module.scss';
+import { TEXTS } from './texts';
 
 export const SignUp = () => {
   const lang = locales.get().lang;
   const texts = TEXTS[lang] || TEXTS[LANG.RU];
-  const wrapper = document.createElement("div");
+  const wrapper = document.createElement('div');
 
   const html = signup({
     title: { text: capitalizeFirst(texts.registration) },
-    emailField: { placeholder: texts.email, name: "email" },
-    loginField: { placeholder: texts.login, name: "login" },
-    nameField: { placeholder: texts.name, name: "first_name" },
-    surnameField: { placeholder: texts.surname, name: "second_name" },
-    phoneField: { placeholder: texts.phone, name: "phone" },
-    passwordField: { placeholder: texts.password, name: "password" },
+    emailField: { placeholder: texts.email, name: 'email' },
+    loginField: { placeholder: texts.login, name: 'login' },
+    nameField: { placeholder: texts.name, name: 'first_name' },
+    surnameField: { placeholder: texts.surname, name: 'second_name' },
+    phoneField: { placeholder: texts.phone, name: 'phone' },
+    passwordField: { placeholder: texts.password, name: 'password' },
     passwordRepeatField: {
       placeholder: texts.passwordRepeat,
-      name: "passwordRepeat",
+      name: 'passwordRepeat',
     },
     button: {
       label: capitalizeFirst(texts.signUp),
-      type: "submit",
-      id: "signup-submit",
+      type: 'submit',
+      id: 'signup-submit',
     },
-    loginLink: { href: "/login", text: capitalizeFirst(texts.enter) },
+    loginLink: { href: '/login', text: capitalizeFirst(texts.enter) },
   });
 
   const submitHandler = (e: Event) => {
     e.preventDefault();
-    console.log(getFormValues("signup-form"));
+    console.log(getFormValues('signup-form'));
   };
 
   wrapper.classList.add(styles.wrapper);
   wrapper.innerHTML = html;
 
-  const form = wrapper.querySelector("#signup-form");
-  form?.addEventListener("submit", submitHandler);
+  const form = wrapper.querySelector('#signup-form');
+  form?.addEventListener('submit', submitHandler);
 
   return wrapper;
 };

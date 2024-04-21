@@ -1,4 +1,4 @@
-import { LANG } from "constants";
+import { LANG } from 'constants';
 
 export const locales = {
   lang: LANG.RU as LANG,

@@ -1,7 +1,7 @@
-import Handlebars from "handlebars/runtime";
+import './styles.scss';
 
-import profilePanel from "./prifilePanel.hbs";
+import Handlebars from 'handlebars/runtime';
 
-import "./styles.scss";
+import profilePanel from './prifilePanel.hbs';
 
-Handlebars.registerPartial("profilePanel", profilePanel);
+Handlebars.registerPartial('profilePanel', profilePanel);

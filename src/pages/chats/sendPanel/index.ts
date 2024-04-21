@@ -1,7 +1,7 @@
-import Handlebars from "handlebars/runtime";
+import './style.scss';
 
-import sendPanel from './sendPanel.hbs'
+import Handlebars from 'handlebars/runtime';
 
-import './style.scss'
+import sendPanel from './sendPanel.hbs';
 
-Handlebars.registerPartial('sendPanel', sendPanel)
+Handlebars.registerPartial('sendPanel', sendPanel);

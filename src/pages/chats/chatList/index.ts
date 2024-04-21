@@ -1,7 +1,7 @@
-import Handlebars from "handlebars/runtime";
+import './styles.scss';
 
-import chatList from "./chatList.hbs";
+import Handlebars from 'handlebars/runtime';
 
-import "./styles.scss";
+import chatList from './chatList.hbs';
 
-Handlebars.registerPartial("chatList", chatList);
+Handlebars.registerPartial('chatList', chatList);

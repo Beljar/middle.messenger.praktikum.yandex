@@ -1,7 +1,7 @@
-import Handlebars from "handlebars/runtime";
+import './styles.scss';
 
-import bubble from "./bubble.hbs";
+import Handlebars from 'handlebars/runtime';
 
-import "./styles.scss";
+import bubble from './bubble.hbs';
 
-Handlebars.registerPartial("bubble", bubble);
+Handlebars.registerPartial('bubble', bubble);
