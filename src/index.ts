@@ -27,8 +27,4 @@ document.addEventListener('DOMContentLoaded', () => {
     .filter(Boolean) as (keyof typeof ROOTS)[];
   const domain = path[0] || 'login';
   root?.appendChild(ROOTS[domain]?.() || ROOTS['404']());
-  const element = document.querySelector('.chat');
-  if (element) {
-    element.scrollTop = element.scrollHeight;
-  }
 });

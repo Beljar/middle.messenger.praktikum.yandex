@@ -49,6 +49,19 @@ export const Chats = () => {
     styles,
   });
 
+  //отматывает скролл вниз
+  const observer = new MutationObserver(function () {
+    const element = document.querySelector('.chat');
+    if (element && document.contains(element)) {
+      element.scrollTop = element.scrollHeight;
+    }
+    observer.disconnect();
+  });
+
+  observer.observe(wrapper, {
+    childList: true,
+  });
+
   wrapper.classList.add(styles.wrapper);
   wrapper.innerHTML = html;
   return wrapper;
