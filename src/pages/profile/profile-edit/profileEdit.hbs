@@ -1,0 +1,15 @@
+<form id="profile_form" class={{styles.form}}>
+    <div class={{styles.avatar}}>
+        <label for="avatar_input">{{> avatar avatar}}  </label>
+        <input type="file" id="avatar_input" name="avatar" accept="image/png, image/jpeg" >
+    </div>
+    {{> input displayField value=displayName }}    
+    {{> input loginField value=login }}    
+    {{> input nameField value=name }}
+    {{> input surnameField value=surname }}
+    {{> input phoneField value=phone }}
+    {{> input emailField value=email }}  
+    {{> button submitButton }}
+    {{> button cancelButton outline='true'}}
+</form>
+

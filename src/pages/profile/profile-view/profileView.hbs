@@ -1,0 +1,15 @@
+<div class={{styles.container}}>
+    <div class={{styles.avatar}}>
+        {{> avatar}}  
+    </div>
+    {{> h1 text=displayName}}
+    <div>{{ login }}</div>
+    <div>{{ name }}&nbsp;{{ surname }}</div>
+    <div>{{ email }}</div>
+    <div>{{ phone }}</div>
+    {{> button editButton}}
+    <div>
+        {{> link changePassword}}
+    </div>  
+</div>
+

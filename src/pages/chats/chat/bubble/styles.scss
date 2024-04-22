@@ -1,0 +1,57 @@
+@import "../../../../styles/constants/constants.scss";
+.bubble {
+  border-radius: 1.15rem;
+  line-height: 1.25;
+  max-width: 75%;
+  padding: 0.5rem 0.875rem;
+  position: relative;
+  word-wrap: break-word;
+
+  align-items: flex-start;
+  align-self: flex-start;
+  background-color: lightgray;
+  color: #000;
+}
+
+.bubble.my {
+  align-self: end;
+  background-color: $color-accent-bg;
+}
+
+.bubble::before,
+.bubble::after {
+  bottom: -0.1rem;
+  content: "";
+  height: 1rem;
+  position: absolute;
+}
+
+.bubble:not(.my)::before {
+  border-bottom-right-radius: 0.8rem 0.7rem;
+  border-left: 1rem solid lightgray;
+  left: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+.bubble:not(.my)::after {
+  background-color: #fff;
+  border-bottom-right-radius: 0.5rem;
+  left: 20px;
+  transform: translate(-30px, -2px);
+  width: 10px;
+}
+
+.bubble.my::before {
+  border-bottom-left-radius: 0.8rem 0.7rem;
+  border-right: 1rem solid $color-accent-bg;
+  right: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+.bubble.my::after {
+  background-color: #fff;
+  border-bottom-left-radius: 0.5rem;
+  right: 20px;
+  transform: translate(30px, -2px);
+  width: 10px;
+}

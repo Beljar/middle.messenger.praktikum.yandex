@@ -1,0 +1,44 @@
+@import "../../../styles/constants/constants.scss";
+
+.chat-list {
+  overflow-y: auto;
+  .chat-card {
+    display: flex;
+    border-bottom: 1px gray solid;
+    padding: 8px 8px;
+    gap: 8px;
+    cursor: default;
+    &:hover {
+      background-color: $color-accent-bg;
+    }
+    .author-avatar {
+      width: 40px;
+      flex-shrink: 0;
+    }
+    .author-message {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+    .date-count {
+      width: 70px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      .count {
+        font-size: 10px;
+        border-radius: 50%;
+        background-color: $color-accent;
+        padding: 1px;
+        min-width: 15px;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+    }
+  }
+}
