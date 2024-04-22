@@ -49,9 +49,6 @@ export const ProfileEdit = () => {
     reader.onload = function () {
       imgEl.src = String(reader.result);
     };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
   });
 
   return wrapper;

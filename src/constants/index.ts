@@ -1,4 +1,4 @@
-export enum LANG {
-  RU,
-  EN,
-}
+export const LANG = {
+  RU: 'RU',
+  EN: 'EN',
+};

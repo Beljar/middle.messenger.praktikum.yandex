@@ -1,6 +1,5 @@
 import { LANG } from 'constants';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { getFormValues } from 'shared/utils/getFormValues';
 import { locales } from 'stores/locales';
 
 import login from './login.hbs';
@@ -26,7 +25,6 @@ export const Login = () => {
 
   const submitHandler = (e: Event) => {
     e.preventDefault();
-    console.log(getFormValues('login-form'));
     window.location.href = '/chats';
   };
 

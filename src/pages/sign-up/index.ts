@@ -1,6 +1,5 @@
 import { LANG } from 'constants';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { getFormValues } from 'shared/utils/getFormValues';
 import { locales } from 'stores/locales';
 
 import signup from './signUp.hbs';
@@ -34,7 +33,6 @@ export const SignUp = () => {
 
   const submitHandler = (e: Event) => {
     e.preventDefault();
-    console.log(getFormValues('signup-form'));
   };
 
   wrapper.classList.add(styles.wrapper);

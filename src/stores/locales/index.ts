@@ -1,9 +1,9 @@
 import { LANG } from 'constants';
 
 export const locales = {
-  lang: LANG.RU as LANG,
+  lang: LANG.RU as keyof typeof LANG,
   _cbs: [] as (() => void)[],
-  set: function (lang: LANG) {
+  set: function (lang: keyof typeof LANG) {
     this.lang = lang;
     this._cbs.forEach((cb: () => void) => {
       cb();
