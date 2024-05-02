@@ -1,4 +1,5 @@
 import { LANG } from 'constants';
+import { addValidation } from 'shared/utils/addValidation';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
 import { locales } from 'stores/locales';
 
@@ -11,18 +12,22 @@ export const SignUp = () => {
   const texts = TEXTS[lang] || TEXTS[LANG.RU];
   const wrapper = document.createElement('main');
 
-  const html = signup({
-    title: { text: capitalizeFirst(texts.registration) },
-    emailField: { placeholder: texts.email, name: 'email' },
-    loginField: { placeholder: texts.login, name: 'login' },
-    nameField: { placeholder: texts.name, name: 'first_name' },
-    surnameField: { placeholder: texts.surname, name: 'second_name' },
-    phoneField: { placeholder: texts.phone, name: 'phone' },
-    passwordField: { placeholder: texts.password, name: 'password' },
-    passwordRepeatField: {
+  const fields = {
+    email: { placeholder: texts.email, name: 'email' },
+    login: { placeholder: texts.login, name: 'login' },
+    first_name: { placeholder: texts.name, name: 'first_name' },
+    second_name: { placeholder: texts.surname, name: 'second_name' },
+    phone: { placeholder: texts.phone, name: 'phone' },
+    password: { placeholder: texts.password, name: 'password' },
+    passwordRepeat: {
       placeholder: texts.passwordRepeat,
       name: 'passwordRepeat',
     },
+  };
+
+  const html = signup({
+    title: { text: capitalizeFirst(texts.registration) },
+    ...fields,
     button: {
       label: capitalizeFirst(texts.signUp),
       type: 'submit',
@@ -40,6 +45,10 @@ export const SignUp = () => {
 
   const form = wrapper.querySelector('#signup-form');
   form?.addEventListener('submit', submitHandler);
+
+  const rules = [(val) => (!val ? 'Введите значение' : undefined)];
+
+  addValidation('email', rules, form);
 
   return wrapper;
 };

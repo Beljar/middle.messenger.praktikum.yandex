@@ -2,9 +2,16 @@
   border: 1px gray solid;
   border-radius: $border-radius;
   padding: 8px 4px;
+  width: 100%;
+  &.error{
+      border: 1px $color-error solid;
+  }
 }
 
 input:focus,
 input:focus-visible {
   outline: $border-radius auto $color-accent-light;
+    &.error{
+  outline: $border-radius auto $color-error-light;
+  }
 }
