@@ -1,7 +1,7 @@
 import { LANG } from 'constants';
+import { Component } from 'shared/components/Component';
 import { addValidation } from 'shared/utils/addValidation';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { Component } from 'shared/utils/Component';
 import { locales } from 'stores/locales';
 
 import signUpTemplate from './signUp.hbs';

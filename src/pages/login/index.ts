@@ -1,6 +1,6 @@
 import { LANG } from 'constants';
+import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { Component } from 'shared/utils/Component';
 import { locales } from 'stores/locales';
 
 import loginTemplate from './login.hbs';

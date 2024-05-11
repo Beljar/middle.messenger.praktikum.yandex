@@ -1,4 +1,4 @@
-import { Component } from 'shared/utils/Component';
+import { Component } from 'shared/components/Component';
 
 import { ChangePassword } from './change-password';
 import { ProfileEdit } from './profile-edit';

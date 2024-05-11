@@ -1,5 +1,9 @@
 <div class="chat">
+{{#if isLoading}}
+  {{> loader}}
+{{else}}
   {{#each messages}}
   {{> bubble text=this.message my=this.my}}
   {{/each}}
+{{/if}}
 </div>

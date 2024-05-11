@@ -4,10 +4,11 @@ import './sendPanel/index';
 import './profilePanel/index';
 
 import { LANG } from 'constants';
+import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { Component } from 'shared/utils/Component';
 import { formatDate } from 'shared/utils/formatDate';
 import { locales } from 'stores/locales';
+import { model } from 'stores/model';
 
 import { chatMock } from './chat/mocks';
 import { chatListMock } from './chatList/mocks';
@@ -18,8 +19,24 @@ import { TEXTS } from './texts';
 class Chats extends Component {
   constructor() {
     super();
+    this._state = {
+      currentChat: {
+        messages: [],
+        isLoading: false,
+      },
+    };
+  }
+  mount() {
+    this.state = {
+      currentChat: {
+        messages: chatMock,
+        isLoading: false,
+      },
+    };
+    this.render();
   }
   render(): void {
+    const currentChat = model.currentChat;
     const lang = locales.get().lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
     const wrapper = document.createElement('main');
@@ -31,10 +48,11 @@ class Chats extends Component {
         })),
       },
       currentChat: {
-        messages: chatMock.map((message) => ({
+        messages: currentChat.messages.map((message) => ({
           ...message,
           my: message.author === 'me',
         })),
+        isLoading: currentChat.isLoading,
       },
       sendPanel: {
         input: { placeholder: texts.enterMessage, name: 'message' },

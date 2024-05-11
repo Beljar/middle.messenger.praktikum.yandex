@@ -1,6 +1,6 @@
 import { LANG } from 'constants';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { Component } from 'shared/utils/Component';
+import { Component } from 'shared/components/Component';
 import { locales } from 'stores/locales';
 
 import stub500Template from './stub500.hbs';
