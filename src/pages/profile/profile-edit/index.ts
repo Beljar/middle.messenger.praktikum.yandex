@@ -1,6 +1,6 @@
 import { LANG } from 'constants/index';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { locales } from 'stores/locales';
+import { model } from 'stores/model';
 
 import { profileMock } from '../mocks';
 import profileEdit from './profileEdit.hbs';
@@ -11,7 +11,7 @@ const SUBMIT_BTN_ID = 'submit_button';
 const RESET_BTN_ID = 'reset_button';
 
 export const ProfileEdit = () => {
-  const lang = locales.get().lang;
+  const lang = model.locales.lang;
   const texts = TEXTS[lang] || TEXTS[LANG.RU];
   const wrapper = document.createElement('main');
   const html = profileEdit({

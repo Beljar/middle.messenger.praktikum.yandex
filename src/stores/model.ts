@@ -1,20 +1,4 @@
-class Model {
-  constructor() {
-    this.currentChat = {
-      messages: [],
-      isLoading: false,
-    };
-    this.chatList = {
-      chats: [],
-      isLoading: false,
-    };
-  }
-  setCurrentChat(currentChat) {
-    this.currentChat = currentChat;
-  }
-  setChatList(chatList) {
-    this.chatList = chatList;
-  }
-}
+import { chats } from './chats';
+import { locales } from './locales';
 
-export const model = new Model();
+export const model = { chats, locales };

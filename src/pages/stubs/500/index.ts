@@ -1,7 +1,7 @@
 import { LANG } from 'constants';
-import { capitalizeFirst } from 'shared/utils/capitalize-first';
 import { Component } from 'shared/components/Component';
-import { locales } from 'stores/locales';
+import { capitalizeFirst } from 'shared/utils/capitalize-first';
+import { model } from 'stores/model';
 
 import stub500Template from './stub500.hbs';
 import styles from './styles.module.scss';
@@ -12,7 +12,7 @@ class Stub500 extends Component {
     super();
   }
   render(): void {
-    const lang = locales.get().lang;
+    const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
     const wrapper = document.createElement('main');
 

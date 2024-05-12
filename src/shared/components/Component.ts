@@ -1,6 +1,6 @@
 export class Component {
-  parent: HTMLElement | undefined;
-  element: HTMLElement | undefined;
+  parent: HTMLElement | Element | undefined;
+  element: HTMLElement | Element | undefined;
   _state: any;
   constructor() {
     this.parent = undefined;
@@ -8,19 +8,17 @@ export class Component {
     this._state = {};
   }
   set state(state: any) {
-    console.log(state);
     this._state = state;
     this.render();
   }
   get state() {
-    console.log(this._state);
     return this._state;
   }
-  setParent(parent: HTMLElement) {
+  setParent(parent: HTMLElement | Element) {
     this.parent = parent;
   }
   render() {
-    if (this.element) {
+    if (this.element && this.parent) {
       this.parent.innerHTML = '';
       this.parent.appendChild(this.element);
     }

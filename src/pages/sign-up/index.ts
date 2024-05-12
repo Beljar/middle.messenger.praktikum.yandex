@@ -2,7 +2,7 @@ import { LANG } from 'constants';
 import { Component } from 'shared/components/Component';
 import { addValidation } from 'shared/utils/addValidation';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { locales } from 'stores/locales';
+import { model } from 'stores/model';
 
 import signUpTemplate from './signUp.hbs';
 import styles from './styles.module.scss';
@@ -13,7 +13,7 @@ class SignUp extends Component {
     super();
   }
   render(): void {
-    const lang = locales.get().lang;
+    const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
     const wrapper = document.createElement('main');
 

@@ -1,6 +1,6 @@
 import { LANG } from 'constants/index';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { locales } from 'stores/locales';
+import { model } from 'stores/model';
 
 import { profileMock } from '../mocks';
 import profileView from './profileView.hbs';
@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 import { TEXTS } from './texts';
 
 export const ProfileView = () => {
-  const lang = locales.get().lang;
+  const lang = model.locales.lang;
   const texts = TEXTS[lang] || TEXTS[LANG.RU];
   const wrapper = document.createElement('main');
   const html = profileView({

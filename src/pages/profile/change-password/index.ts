@@ -1,13 +1,13 @@
 import { LANG } from 'constants';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { locales } from 'stores/locales';
+import { model } from 'stores/model';
 
 import changePassword from './changePassword.hbs';
 import styles from './styles.module.scss';
 import { TEXTS } from './texts';
 
 export const ChangePassword = () => {
-  const lang = locales.get().lang;
+  const lang = model.locales.lang;
   const texts = TEXTS[lang] || TEXTS[LANG.RU];
   const wrapper = document.createElement('main');
 

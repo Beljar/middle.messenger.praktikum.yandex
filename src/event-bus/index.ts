@@ -1,17 +1,20 @@
+export type EventCb = (payload: any) => void;
+
 export class EventBus {
+  events: Record<string, EventCb[]>;
   constructor() {
     this.events = {};
   }
-  on(event, cb) {
-    this.events[event] = this.events[event]
-      ? [...this.events[event], cb]
+  on(eventName: string, cb: EventCb) {
+    this.events[eventName] = this.events[eventName]
+      ? [...this.events[eventName], cb]
       : [cb];
   }
-  emit(event) {
-    const cbs = this.events[event];
+  emit(eventName: string, payload?: any) {
+    const cbs = this.events[eventName];
     if (cbs) {
       cbs.forEach((cb) => {
-        cb();
+        cb(payload);
       });
     }
   }

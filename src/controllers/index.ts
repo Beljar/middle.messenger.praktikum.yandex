@@ -8,6 +8,5 @@ export { chatsController } from './chats';
 export const documentController = new Controller('document');
 
 documentController.setBinding('load', () => {
-  console.log('load');
   chatsController.init(eventBus);
 });

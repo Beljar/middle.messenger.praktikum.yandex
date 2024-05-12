@@ -11,7 +11,7 @@ import text from './typography/text/text.hbs';
 
 export const registerPartials = () => {
   Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
-    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+    return arg1 === arg2 ? options.fn(this) : options.inverse(this);
   });
   Handlebars.registerPartial('avatar', avatar);
   Handlebars.registerPartial('button', button);

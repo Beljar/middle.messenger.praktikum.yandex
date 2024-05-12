@@ -7,9 +7,10 @@ import { LANG } from 'constants';
 import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
 import { formatDate } from 'shared/utils/formatDate';
-import { locales } from 'stores/locales';
+import { getFormValues } from 'shared/utils/getFormValues';
 import { model } from 'stores/model';
 
+import { eventBus } from '../../event-bus';
 import chatsTemplate from './chats.hbs';
 import styles from './styles.module.scss';
 import { TEXTS } from './texts';
@@ -25,9 +26,9 @@ class Chats extends Component {
     };
   }
   render(): void {
-    const currentChat = model.currentChat;
-    const chatList = model.chatList;
-    const lang = locales.get().lang;
+    const currentChat = model.chats.currentChat;
+    const chatList = model.chats.chatList;
+    const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
     const wrapper = document.createElement('main');
     const html = chatsTemplate({
@@ -65,9 +66,21 @@ class Chats extends Component {
     //отматывает скролл вниз
     const observer = new MutationObserver(function () {
       const element = document.querySelector('.chat');
+
       if (element && document.contains(element)) {
         element.scrollTop = element.scrollHeight;
       }
+      const sendFormEl = document.querySelector('#send-message-form');
+      if (sendFormEl) {
+        sendFormEl?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const message = getFormValues<{ message: string }>(
+            'send-message-form'
+          ).message;
+          eventBus.emit('chats:send', message);
+        });
+      }
+
       observer.disconnect();
     });
 
