@@ -20,7 +20,7 @@ export class Router extends Component {
     const root = document.querySelector('#app');
     if (!root) return;
     page.setParent(root);
-    eventBus.emit(`mount:${this.state.route}`);
+    eventBus.emit(`${this.state.route}:mount`);
     page.render();
   }
 }

@@ -1,27 +1,31 @@
 <ul class="chat-list">
-  {{#each chats}}
-    <li class="chat-card">
-      <div class="author-avatar">
-        {{> avatar src=this.avatar}}
-      </div>
-      <div class="author-message">
-        <div>
-          {{> text ellipsis=1 text=this.author}}
+  {{#if isLoading}}
+    {{> loader}}
+  {{else}}
+    {{#each chats}}
+      <li class="chat-card">
+        <div class="author-avatar">
+          {{> avatar src=this.avatar}}
         </div>
-        <div>
-          {{> text ellipsis=1 text=this.lastMessage}}
+        <div class="author-message">
+          <div>
+            {{> text ellipsis=1 text=this.author}}
+          </div>
+          <div>
+            {{> text ellipsis=1 text=this.lastMessage}}
+          </div>
         </div>
-      </div>
-      <div class="date-count">
-        <div>
-          {{this.date}}
+        <div class="date-count">
+          <div>
+            {{this.date}}
+          </div>
+          {{#if this.count}} 
+          <div class="count">
+              <div>{{this.count}}</div>
+          </div>
+          {{/if}}
         </div>
-        {{#if this.count}} 
-        <div class="count">
-            <div>{{this.count}}</div>
-        </div>
-        {{/if}}
-      </div>
-    </li>
-  {{/each}}
+      </li>
+    {{/each}}
+  {{/if}}
 </ul>

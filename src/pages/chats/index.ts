@@ -10,8 +10,6 @@ import { formatDate } from 'shared/utils/formatDate';
 import { locales } from 'stores/locales';
 import { model } from 'stores/model';
 
-import { chatMock } from './chat/mocks';
-import { chatListMock } from './chatList/mocks';
 import chatsTemplate from './chats.hbs';
 import styles from './styles.module.scss';
 import { TEXTS } from './texts';
@@ -26,26 +24,19 @@ class Chats extends Component {
       },
     };
   }
-  mount() {
-    this.state = {
-      currentChat: {
-        messages: chatMock,
-        isLoading: false,
-      },
-    };
-    this.render();
-  }
   render(): void {
     const currentChat = model.currentChat;
+    const chatList = model.chatList;
     const lang = locales.get().lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
     const wrapper = document.createElement('main');
     const html = chatsTemplate({
       chatList: {
-        chats: chatListMock.map((chat) => ({
+        chats: chatList.chats.map((chat) => ({
           ...chat,
           date: formatDate(chat.date),
         })),
+        isLoading: chatList.isLoading,
       },
       currentChat: {
         messages: currentChat.messages.map((message) => ({

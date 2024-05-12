@@ -11,24 +11,16 @@ import { client } from 'shared/client';
 import { Router } from 'shared/components';
 import { model } from 'stores/model';
 
+import { documentController } from './controllers';
 import { eventBus } from './event-bus';
 import { registerPartials } from './partials';
 
 registerPartials();
+documentController.init(eventBus);
 
 document.addEventListener('DOMContentLoaded', () => {
-  eventBus.on('mount:chats', async () => {
-    model.setCurrentChat({
-      isLoading: true,
-      messages: [],
-    });
-    const messages = await client.getChatById('');
-    model.setCurrentChat({
-      isLoading: false,
-      messages,
-    });
-    chats.render();
-  });
+  eventBus.emit('document:load');
+  console.log(eventBus);
   const router = new Router({
     login,
     signup: signUp,
