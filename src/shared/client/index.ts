@@ -1,5 +1,4 @@
-import { chatMock } from 'pages/chats/chat/mocks';
-import { chatListMock } from 'pages/chats/chatList/mocks';
+import { mock } from '../../mocks';
 
 export type MessageDTO = {
   id: string;
@@ -25,14 +24,26 @@ export const client = {
   getChatById: (chatId: string): Promise<ChatDetailDTO> => {
     return new Promise((res) => {
       setTimeout(() => {
-        res({ id: chatId, messages: chatMock });
+        res({
+          id: chatId,
+          messages:
+            mock.chats.find((chat) => chat.id === chatId)?.messages || [],
+        });
       }, Math.random() * 1000);
     });
   },
   getChats: (): Promise<ChatListItemDTO[]> => {
     return new Promise((res) => {
       setTimeout(() => {
-        res(chatListMock);
+        res(
+          mock.chats.map((chat) => ({
+            id: chat.id,
+            author: chat.author,
+            lastMessage: chat.messages[chat.messages.length - 1].message,
+            date: chat.date,
+            count: chat.count,
+          }))
+        );
       }, Math.random() * 1000);
     });
   },

@@ -1,4 +1,6 @@
-export const chatMock = [
+import { MessageDTO } from 'shared/client';
+
+export const messages: MessageDTO[] = [
   {
     id: 'd17120b9-8077-466d-848c-417270110542',
     author: 'Lilias Angliss',
@@ -510,17 +512,3 @@ export const chatMock = [
     date: '2023-12-01T21:24:04Z',
   },
 ];
-
-const shuffleArray = (arr: []) => {
-  const size = arr.length;
-  const newArr = [...arr];
-  for (let i = 0; i < size; i++) {
-    const newIndex = Math.floor(Math.random() * size);
-    const value = newArr[i];
-    newArr[i] = newArr[newIndex];
-    newArr[newIndex] = value;
-  }
-  return newArr;
-};
-
-console.log(shuffleArray(chatMock));

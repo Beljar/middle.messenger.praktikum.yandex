@@ -38,6 +38,7 @@ class Chats extends Component<{
         chats: chats.chatList.map((chat) => ({
           ...chat,
           date: formatDate(chat.date),
+          isSelected: currentChat.id === chat.id,
         })),
         isLoading: chats.isLoading,
       },
@@ -82,6 +83,14 @@ class Chats extends Component<{
           eventBus.emit('chats:send', message);
         });
       }
+
+      //выбор чата
+      const chatLiEls = document.querySelectorAll('li.chat-card');
+      chatLiEls.forEach((el) => {
+        el.addEventListener('click', () => {
+          eventBus.emit('chats:select', el.id);
+        });
+      });
 
       observer.disconnect();
     });

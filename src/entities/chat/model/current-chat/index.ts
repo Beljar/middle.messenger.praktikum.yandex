@@ -18,9 +18,13 @@ class CurrentChat {
   setIsLoading(isLoading: boolean) {
     this.data.isLoading = isLoading;
   }
+  setId(id: string) {
+    this.data.id = id;
+  }
   async fetchCurrentChat(id: string) {
     const { messages } = await client.getChatById(id);
     this.data.messages = messages;
+    this.data.id = id;
     this.setIsLoading(false);
   }
   async postMessage(message: string) {

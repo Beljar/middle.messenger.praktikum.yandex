@@ -3,7 +3,7 @@
     {{> loader}}
   {{else}}
     {{#each chats}}
-      <li class="chat-card">
+      <li  {{#if this.isSelected}}  class="chat-card selected" {{else}} class="chat-card" {{/if}} id={{this.id}}>
         <div class="author-avatar">
           {{> avatar src=this.avatar}}
         </div>

@@ -11,6 +11,9 @@
     padding: 8px 8px;
     gap: 8px;
     cursor: default;
+    &.selected {
+      background-color: $color-accent-bg;
+    }
     &:hover {
       background-color: $color-accent-bg;
     }

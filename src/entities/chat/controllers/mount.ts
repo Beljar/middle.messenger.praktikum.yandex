@@ -1,6 +1,7 @@
 import { chats } from 'pages/chats';
 
 import { chatListModel, currentChatModel } from '..';
+import { select } from './select';
 
 export const mount = async () => {
   //setting loaders
@@ -18,7 +19,6 @@ export const mount = async () => {
 
   //fetching current chat
   const chatList = chatListModel.data.chatList;
-  const lastChat = chatList[chatList.length - 1];
-  await currentChatModel.fetchCurrentChat(lastChat.id);
-  chats.state = { ...chats.state, currentChat: currentChatModel.data };
+  const lastChat = chatList[0];
+  select(lastChat.id);
 };
