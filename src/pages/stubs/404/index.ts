@@ -1,7 +1,7 @@
 import { LANG } from 'constants';
 import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { model } from 'stores/model';
+import { model } from 'stores/index';
 
 import stub404Template from './stub404.hbs';
 import styles from './styles.module.scss';

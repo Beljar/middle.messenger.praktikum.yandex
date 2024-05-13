@@ -12,6 +12,7 @@
       "stores/*": ["./stores/*"],
       "partials/*": ["./partials/*"],
       "pages/*": ["./pages/*"],
+      "entities/*": ["./entities/*"],
       "constants/*": ["./constants/*"]
     },
 

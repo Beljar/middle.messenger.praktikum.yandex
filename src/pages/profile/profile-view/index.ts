@@ -1,6 +1,6 @@
 import { LANG } from 'constants/index';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { model } from 'stores/model';
+import { model } from 'stores/index';
 
 import { profileMock } from '../mocks';
 import profileView from './profileView.hbs';

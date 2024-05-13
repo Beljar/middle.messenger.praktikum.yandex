@@ -1,13 +1,13 @@
-export class Component {
+export class Component<T extends Object = any> {
   parent: HTMLElement | Element | undefined;
   element: HTMLElement | Element | undefined;
-  _state: any;
+  _state: T;
   constructor() {
     this.parent = undefined;
     this.element = undefined;
     this._state = {};
   }
-  set state(state: any) {
+  set state(state: T) {
     this._state = state;
     this.render();
   }

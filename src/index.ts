@@ -1,5 +1,6 @@
 import './styles/styles.scss';
 
+import { chatsController } from 'entities/chat/controllers';
 import { chats } from 'pages/chats';
 import { login } from 'pages/login';
 import { profile } from 'pages/profile';
@@ -8,12 +9,11 @@ import { stub404 } from 'pages/stubs/404';
 import { stub500 } from 'pages/stubs/500';
 import { Router } from 'shared/components';
 
-import { documentController } from './controllers';
 import { eventBus } from './event-bus';
 import { registerPartials } from './partials';
 
 registerPartials();
-documentController.init(eventBus);
+chatsController.init(eventBus);
 
 document.addEventListener('DOMContentLoaded', () => {
   eventBus.emit('document:load');

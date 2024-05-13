@@ -4,40 +4,42 @@ import './sendPanel/index';
 import './profilePanel/index';
 
 import { LANG } from 'constants';
+import { IChatList } from 'entities/chat/model/chat-list';
+import { emptyChat, ICurrentChat } from 'entities/chat/model/current-chat';
 import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
 import { formatDate } from 'shared/utils/formatDate';
 import { getFormValues } from 'shared/utils/getFormValues';
-import { model } from 'stores/model';
+import { model } from 'stores/index';
 
 import { eventBus } from '../../event-bus';
 import chatsTemplate from './chats.hbs';
 import styles from './styles.module.scss';
 import { TEXTS } from './texts';
 
-class Chats extends Component {
+class Chats extends Component<{
+  currentChat: ICurrentChat;
+  chats: IChatList;
+}> {
   constructor() {
     super();
     this._state = {
-      currentChat: {
-        messages: [],
-        isLoading: false,
-      },
+      currentChat: emptyChat,
+      chats: { chatList: [], isLoading: false },
     };
   }
   render(): void {
-    const currentChat = model.chats.currentChat;
-    const chatList = model.chats.chatList;
     const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
     const wrapper = document.createElement('main');
+    const { chats, currentChat } = this.state;
     const html = chatsTemplate({
       chatList: {
-        chats: chatList.chats.map((chat) => ({
+        chats: chats.chatList.map((chat) => ({
           ...chat,
           date: formatDate(chat.date),
         })),
-        isLoading: chatList.isLoading,
+        isLoading: chats.isLoading,
       },
       currentChat: {
         messages: currentChat.messages.map((message) => ({

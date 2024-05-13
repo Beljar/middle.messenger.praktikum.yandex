@@ -1,6 +1,6 @@
 import { LANG } from 'constants';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { model } from 'stores/model';
+import { model } from 'stores/index';
 
 import changePassword from './changePassword.hbs';
 import styles from './styles.module.scss';

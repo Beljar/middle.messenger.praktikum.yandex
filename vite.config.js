@@ -15,6 +15,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      entities: resolve(__dirname, './src/entities'),
       pages: resolve(__dirname, './src/pages'),
       partials: resolve(__dirname, './src/partials'),
       stores: resolve(__dirname, './src/stores'),

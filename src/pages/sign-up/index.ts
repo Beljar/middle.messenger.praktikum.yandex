@@ -1,8 +1,8 @@
 import { LANG } from 'constants';
 import { Component } from 'shared/components/Component';
-import { addValidation } from 'shared/utils/addValidation';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { model } from 'stores/model';
+import { addBlurValidation } from 'shared/utils/validation/addBlurValidation';
+import { model } from 'stores/index';
 
 import signUpTemplate from './signUp.hbs';
 import styles from './styles.module.scss';
@@ -53,7 +53,7 @@ class SignUp extends Component {
 
     const rules = [(val) => (!val ? 'Введите значение' : undefined)];
 
-    addValidation('email', rules, form);
+    addBlurValidation('email', rules, form);
 
     this.element = wrapper;
     super.render();
