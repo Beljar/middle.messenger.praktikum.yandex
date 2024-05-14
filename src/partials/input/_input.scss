@@ -3,6 +3,7 @@
   border-radius: $border-radius;
   padding: 8px 4px;
   width: 100%;
+  box-sizing: border-box;
   &.error{
       border: 1px $color-error solid;
   }

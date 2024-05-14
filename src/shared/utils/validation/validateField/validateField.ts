@@ -8,7 +8,6 @@ export const validateField = (
   const inputEl = formEl?.querySelector(
     `input[name="${fieldName}"`
   ) as HTMLInputElement;
-
   const value = inputEl.value;
   let errEl = formEl?.querySelector(`div[error-for="${fieldName}"]`);
   if (!errEl) {
@@ -25,7 +24,7 @@ export const validateField = (
     if (error) {
       errEl.innerText = error;
       inputEl?.classList.add('error');
-      break;
+      return error;
     }
   }
 };
