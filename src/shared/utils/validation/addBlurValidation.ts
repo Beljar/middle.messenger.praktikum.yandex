@@ -5,10 +5,12 @@ type Rule<T = string> = (val: T) => string | undefined;
 export const addBlurValidation = (
   fieldName: string,
   rules: Rule[],
-  formEl: Element
+  formEl: Element,
+  type: string = 'input'
 ) => {
-  const inputEl = formEl?.querySelector(`input[name="${fieldName}"`);
+  const inputEl = formEl?.querySelector(`${type}[name="${fieldName}"`);
+  console.log(inputEl);
   inputEl?.addEventListener('blur', () => {
-    validateField(fieldName, rules, formEl);
+    validateField(fieldName, rules, formEl, type);
   });
 };

@@ -3,10 +3,11 @@ type Rule<T = string> = (val: T) => string | undefined;
 export const validateField = (
   fieldName: string,
   rules: Rule[],
-  formEl: Element
+  formEl: Element,
+  type: string = 'input'
 ) => {
   const inputEl = formEl?.querySelector(
-    `input[name="${fieldName}"`
+    `${type}[name="${fieldName}"`
   ) as HTMLInputElement;
   const value = inputEl.value;
   let errEl = formEl?.querySelector(`div[error-for="${fieldName}"]`);

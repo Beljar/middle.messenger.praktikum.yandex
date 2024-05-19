@@ -1,12 +1,21 @@
 .send-panel {
+  align-items: flex-end;
   box-sizing: border-box;
-  height: 72px;
+  height: 130px;
+  flex-shrink: 0;
   width: 100%;
   display: flex;
   gap: 8px;
   padding: 16px 8px;
   background-color: rgb(241, 241, 241);
-  input {
+  [item-for="message"] {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    height: 100%;
+    textarea {
+      height: 100%;
+      resize: none;
+    }
   }
 }

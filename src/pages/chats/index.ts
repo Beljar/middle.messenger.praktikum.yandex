@@ -10,12 +10,17 @@ import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
 import { formatDate } from 'shared/utils/formatDate';
 import { getFormValues } from 'shared/utils/getFormValues';
+import { addBlurValidation } from 'shared/utils/validation/addBlurValidation';
+import { required } from 'shared/utils/validation/rules';
+import { validateForm } from 'shared/utils/validation/validateForm';
 import { model } from 'stores/index';
 
 import { eventBus } from '../../event-bus';
 import chatsTemplate from './chats.hbs';
 import styles from './styles.module.scss';
 import { TEXTS } from './texts';
+
+const SEND_FORM_ID = 'send-message-form';
 
 class Chats extends Component<{
   currentChat: ICurrentChat;
@@ -50,7 +55,7 @@ class Chats extends Component<{
         isLoading: currentChat.isLoading,
       },
       sendPanel: {
-        input: { placeholder: texts.enterMessage, name: 'message' },
+        textarea: { placeholder: texts.enterMessage, name: 'message' },
         button: {
           label: capitalizeFirst(texts.send),
           type: 'submit',
@@ -73,15 +78,19 @@ class Chats extends Component<{
       if (element && document.contains(element)) {
         element.scrollTop = element.scrollHeight;
       }
-      const sendFormEl = document.querySelector('#send-message-form');
+      const sendFormEl = document.querySelector(`#${SEND_FORM_ID}`);
       if (sendFormEl) {
         sendFormEl?.addEventListener('submit', (e) => {
           e.preventDefault();
-          const message = getFormValues<{ message: string }>(
-            'send-message-form'
-          ).message;
-          eventBus.emit('chats:send', message);
+          const errors = validateForm(sendFormEl, [
+            { name: 'message', rules: [required] },
+          ]);
+          if (Object.values(errors).length) return;
+          const values = getFormValues<{ message: string }>(SEND_FORM_ID);
+          console.log(values);
+          eventBus.emit('chats:send', values.message);
         });
+        addBlurValidation('message', [required], sendFormEl, 'textarea');
       }
 
       //выбор чата
