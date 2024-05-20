@@ -1,4 +1,4 @@
-import { chats } from 'pages/chats';
+import { chatList as chatListComponent } from 'pages/chats/chatList';
 
 import { chatListModel, currentChatModel } from '..';
 import { select } from './select';
@@ -7,15 +7,15 @@ export const mount = async () => {
   //setting loaders
   currentChatModel.setIsLoading(true);
   chatListModel.setIsLoading(true);
-  chats.state = {
-    ...chats.state,
-    currentChat: currentChatModel.data,
-    chats: chatListModel.data,
+  chatListComponent.state = {
+    ...chatListModel.data,
   };
 
   //fetching chatList
   await chatListModel.fetchChatList();
-  chats.state = { ...chats.state, chats: chatListModel.data };
+  chatListComponent.state = {
+    ...chatListModel.data,
+  };
 
   //fetching current chat
   const chatList = chatListModel.data.chatList;

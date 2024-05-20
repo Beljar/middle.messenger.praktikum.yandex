@@ -1,13 +1,13 @@
-<ul class="chat-list">
+<ul class={{styles.chat-list}}>
   {{#if isLoading}}
     {{> loader}}
   {{else}}
     {{#each chats}}
-      <li  {{#if this.isSelected}}  class="chat-card selected" {{else}} class="chat-card" {{/if}} id={{this.id}}>
-        <div class="author-avatar">
+      <li  {{#if this.isSelected}}  class="{{../styles.selected}} {{../styles.chat-card}}" {{else}} class={{../styles.chat-card}} {{/if}} id={{this.id}}>
+        <div class={{../styles.author-avatar}}>
           {{> avatar src=this.avatar}}
         </div>
-        <div class="author-message">
+        <div class={{../styles.author-message}}>
           <div>
             {{> text ellipsis=1 text=this.author}}
           </div>
@@ -15,12 +15,12 @@
             {{> text ellipsis=1 text=this.lastMessage}}
           </div>
         </div>
-        <div class="date-count">
+        <div class={{../styles.date-count}}>
           <div>
             {{this.date}}
           </div>
           {{#if this.count}} 
-          <div class="count">
+          <div class={{../styles.count}}>
               <div>{{this.count}}</div>
           </div>
           {{/if}}

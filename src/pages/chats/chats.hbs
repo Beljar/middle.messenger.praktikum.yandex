@@ -1,8 +1,8 @@
 <div class={{styles.left}}>
   {{> profilePanel profilePanel}}
-  {{> chatList chatList}} 
+  <div id="chat-list" class={{styles.chats}}></div> 
 </div>
 <div class={{styles.right}}>
-  {{> chat currentChat}} 
-  {{> sendPanel sendPanel}} 
+  <div id="current-chat" class={{styles.chat}}></div> 
+  <div id="send-panel" class={{styles.send-panel}}></div> 
 </div>

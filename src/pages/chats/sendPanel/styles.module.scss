@@ -1,8 +1,11 @@
+.wrapper {
+  width: 100%;
+}
+
 .send-panel {
   align-items: flex-end;
+  height: 100%;
   box-sizing: border-box;
-  height: 130px;
-  flex-shrink: 0;
   width: 100%;
   display: flex;
   gap: 8px;

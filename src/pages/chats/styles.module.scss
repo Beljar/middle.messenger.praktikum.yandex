@@ -18,3 +18,21 @@
   flex-direction: column;
   box-shadow: 1px 1px 3px $color-shadow;
 }
+
+.chat {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.chats {
+    display: flex;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.send-panel {
+    height: 130px;
+    display: flex;
+    flex-shrink: 0;
+}

@@ -47,4 +47,24 @@ export const client = {
       }, Math.random() * 1000);
     });
   },
+  postMessage: (
+    message: string,
+    chatId: string
+  ): Promise<MessageDTO | void> => {
+    return new Promise((res) => {
+      const chat = mock.chats.find((chat) => chat.id === chatId);
+      if (!chat) return;
+      const newMessage = {
+        id: '',
+        author: 'me',
+        message,
+        date: new Date().toISOString(),
+      };
+      chat.lastMessage = message;
+      chat.messages = [...chat.messages, newMessage];
+      setTimeout(() => {
+        res(newMessage);
+      }, Math.random() * 1000);
+    });
+  },
 };

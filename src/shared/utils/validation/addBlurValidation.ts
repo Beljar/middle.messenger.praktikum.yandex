@@ -9,7 +9,6 @@ export const addBlurValidation = (
   type: string = 'input'
 ) => {
   const inputEl = formEl?.querySelector(`${type}[name="${fieldName}"`);
-  console.log(inputEl);
   inputEl?.addEventListener('blur', () => {
     validateField(fieldName, rules, formEl, type);
   });

@@ -2,18 +2,23 @@ import { ChatDetailDTO, client } from 'shared/client';
 
 export interface ICurrentChat extends ChatDetailDTO {
   isLoading: boolean;
+  isPosting: boolean;
 }
 
-export const emptyChat: ICurrentChat = {
+export const getEmptyChat = (): ICurrentChat => ({
   id: '',
   messages: [],
   isLoading: false,
-};
+  isPosting: false,
+});
 
 class CurrentChat {
   data: ICurrentChat;
   constructor() {
-    this.data = emptyChat;
+    this.data = getEmptyChat();
+  }
+  setIsPosting(isPosting: boolean) {
+    this.data.isPosting = isPosting;
   }
   setIsLoading(isLoading: boolean) {
     this.data.isLoading = isLoading;
@@ -28,15 +33,9 @@ class CurrentChat {
     this.setIsLoading(false);
   }
   async postMessage(message: string) {
-    const messages = [
-      ...this.data.messages,
-      {
-        id: `message-${Math.random()}`,
-        author: 'me',
-        message,
-        date: '2023-05-26T13:43:35Z',
-      },
-    ];
+    const newMessage = await client.postMessage(message, this.data.id);
+    if (!newMessage) return;
+    const messages = [...this.data.messages, newMessage];
     this.data = {
       ...this.data,
       isLoading: false,
