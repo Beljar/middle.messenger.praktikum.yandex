@@ -13,7 +13,7 @@ class ChatList extends Component<IChatList> {
   }
   render(): void {
     const { chatList, isLoading, currentChatId } = this.state;
-    const html = chatListTemplate({
+    this.html = chatListTemplate({
       chats: chatList.map((chat) => ({
         ...chat,
         date: formatDate(chat.date),
@@ -22,20 +22,14 @@ class ChatList extends Component<IChatList> {
       isLoading: isLoading,
       styles,
     });
-    const wrapper = document.createElement('div');
-    wrapper.classList.add(styles.wrapper);
-    wrapper.innerHTML = html;
-    this.element = wrapper;
-
+    super.render();
     //выбор чата
-    const chatLiEls = wrapper.querySelectorAll('li');
+    const chatLiEls = document.querySelectorAll('li');
     chatLiEls.forEach((el) => {
       el.addEventListener('click', () => {
         eventBus.emit('chats:select', el.id);
       });
     });
-
-    super.render();
   }
 }
 

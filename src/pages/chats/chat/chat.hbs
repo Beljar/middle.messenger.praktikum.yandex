@@ -1,12 +1,14 @@
-{{#if isLoading}}
-  {{> loader}}
-{{else}}
-  {{#each messages}}
-  {{> bubble text=this.message my=this.my}}
-  {{/each}}
-  {{#if isPosting}}
-  <div class={{styles.loader}}>
+<div class={{styles.chat}}>
+  {{#if isLoading}}
     {{> loader}}
-  </div>
-  {{/if}}
-{{/if}}
+  {{else}}
+    {{#each messages}}
+    {{> bubble text=this.message my=this.my}}
+    {{/each}}
+    {{#if isPosting}}
+    <div class={{styles.loader}}>
+      {{> loader}}
+    </div>
+    {{/if}}
+  {{/if}}  
+</div>

@@ -14,9 +14,8 @@ class Login extends Component {
   render(): void {
     const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
-    const wrapper = document.createElement('main');
 
-    const html = loginTemplate({
+    this.html = loginTemplate({
       title: { text: capitalizeFirst(texts.entrance) },
       nameField: { placeholder: texts.name, name: 'login' },
       passwordField: { placeholder: texts.password, name: 'password' },
@@ -26,6 +25,7 @@ class Login extends Component {
         id: 'login-submit',
       },
       signUpLink: { href: '/signup', text: capitalizeFirst(texts.signUp) },
+      styles,
     });
 
     const submitHandler = (e: Event) => {
@@ -33,14 +33,10 @@ class Login extends Component {
       window.location.href = '/chats';
     };
 
-    wrapper.classList.add(styles.wrapper);
-    wrapper.innerHTML = html;
-
-    const form = wrapper.querySelector('#login-form');
-    form?.addEventListener('submit', submitHandler);
-
-    this.element = wrapper;
     super.render();
+
+    const form = document.querySelector('#login-form');
+    form?.addEventListener('submit', submitHandler);
   }
 }
 

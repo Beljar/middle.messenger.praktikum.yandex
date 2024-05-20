@@ -14,17 +14,12 @@ class Stub404 extends Component {
   render(): void {
     const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
-    const wrapper = document.createElement('main');
 
-    const html = stub404Template({
+    this.html = stub404Template({
       title: { text: capitalizeFirst(texts.nothingHere) },
       styles,
     });
 
-    wrapper.classList.add(styles.wrapper);
-    wrapper.innerHTML = html;
-
-    this.element = wrapper;
     super.render();
   }
 }

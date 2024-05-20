@@ -13,19 +13,15 @@ class Chat extends Component<ICurrentChat> {
   }
   render(): void {
     const { messages, isLoading, isPosting } = this.state;
-    const html = chatTemplate({
+    this.html = chatTemplate({
       messages: messages.map((message) => ({
         ...message,
         my: message.author === 'me',
       })),
       isLoading,
       isPosting,
+      styles,
     });
-    const wrapper = document.createElement('div');
-
-    wrapper.classList.add(styles.chat);
-    wrapper.innerHTML = html;
-    this.element = wrapper;
 
     super.render();
 

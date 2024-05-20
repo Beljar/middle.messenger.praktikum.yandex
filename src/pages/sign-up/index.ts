@@ -27,7 +27,6 @@ class SignUp extends Component {
   render(): void {
     const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
-    const wrapper = document.createElement('main');
 
     const fields = {
       email: {
@@ -67,7 +66,7 @@ class SignUp extends Component {
       },
     };
 
-    const html = signUpTemplate({
+    this.html = signUpTemplate({
       title: { text: capitalizeFirst(texts.registration) },
       ...fields,
       button: {
@@ -76,12 +75,12 @@ class SignUp extends Component {
         id: 'signup-submit',
       },
       loginLink: { href: '/login', text: capitalizeFirst(texts.enter) },
+      styles,
     });
 
-    wrapper.classList.add(styles.wrapper);
-    wrapper.innerHTML = html;
+    super.render();
 
-    const form = wrapper.querySelector(`#${SIGNUP_FORM_ID}`);
+    const form = document.querySelector(`#${SIGNUP_FORM_ID}`);
 
     const submitHandler = (e: Event) => {
       e.preventDefault();
@@ -117,9 +116,6 @@ class SignUp extends Component {
         }
       });
     }
-
-    this.element = wrapper;
-    super.render();
   }
 }
 

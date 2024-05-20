@@ -11,7 +11,7 @@ class SendPanel extends Component {
   render() {
     const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
-    const html = sendPanelTemplate({
+    this.html = sendPanelTemplate({
       textarea: { placeholder: texts.enterMessage, name: 'message' },
       button: {
         label: capitalizeFirst(texts.send),
@@ -20,10 +20,6 @@ class SendPanel extends Component {
       },
       styles,
     });
-    const wrapper = document.createElement('div');
-    wrapper.classList.add(styles.wrapper);
-    wrapper.innerHTML = html;
-    this.element = wrapper;
 
     super.render();
   }

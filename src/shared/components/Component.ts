@@ -1,10 +1,10 @@
 export class Component<T extends Object = any> {
   parent: HTMLElement | Element | undefined;
-  element: HTMLElement | Element | undefined;
+  html: string | undefined;
   _state: T;
   constructor() {
     this.parent = undefined;
-    this.element = undefined;
+    this.html = undefined;
     this._state = {};
   }
   set state(state: T) {
@@ -18,9 +18,8 @@ export class Component<T extends Object = any> {
     this.parent = parent;
   }
   render() {
-    if (this.element && this.parent) {
-      this.parent.innerHTML = '';
-      this.parent.appendChild(this.element);
+    if (this.html && this.parent) {
+      this.parent.innerHTML = this.html;
     }
   }
 }

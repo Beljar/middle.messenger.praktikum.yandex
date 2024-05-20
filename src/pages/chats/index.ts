@@ -26,8 +26,7 @@ class Chats extends Component {
   render(): void {
     const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
-    const wrapper = document.createElement('main');
-    const html = chatsTemplate({
+    this.html = chatsTemplate({
       profilePanel: {
         link: {
           href: '/profile',
@@ -37,47 +36,35 @@ class Chats extends Component {
       styles,
     });
 
-    const observer = new MutationObserver(function () {
-      const sendFormEl = document.querySelector(`#${SEND_FORM_ID}`);
-      if (sendFormEl) {
-        sendFormEl?.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const errors = validateForm(sendFormEl, [
-            { name: 'message', rules: [required], type: 'textarea' },
-          ]);
-          if (Object.values(errors).length) return;
-          const values = getFormValues<{ message: string }>(SEND_FORM_ID);
-          console.log(values);
-          eventBus.emit('chats:send', values.message);
-          const messageField = sendFormEl.querySelector('[name="message"');
-          if (messageField && 'value' in messageField) {
-            messageField.value = '';
-          }
-        });
-        addBlurValidation('message', [required], sendFormEl, 'textarea');
-      }
-
-      observer.disconnect();
-    });
-
-    observer.observe(wrapper, {
-      childList: true,
-    });
-
-    wrapper.classList.add(styles.wrapper);
-    wrapper.innerHTML = html;
-    this.element = wrapper;
-
     super.render();
 
-    chat.parent = wrapper.querySelector('#current-chat') || undefined;
+    chat.parent = document.querySelector('#current-chat') || undefined;
     chat.render();
 
-    chatList.parent = wrapper.querySelector('#chat-list') || undefined;
+    chatList.parent = document.querySelector('#chat-list') || undefined;
     chatList.render();
 
-    sendPanel.parent = wrapper.querySelector('#send-panel') || undefined;
+    sendPanel.parent = document.querySelector('#send-panel') || undefined;
     sendPanel.render();
+
+    const sendFormEl = document.querySelector(`#${SEND_FORM_ID}`);
+    if (sendFormEl) {
+      sendFormEl?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const errors = validateForm(sendFormEl, [
+          { name: 'message', rules: [required], type: 'textarea' },
+        ]);
+        if (Object.values(errors).length) return;
+        const values = getFormValues<{ message: string }>(SEND_FORM_ID);
+        console.log(values);
+        eventBus.emit('chats:send', values.message);
+        const messageField = sendFormEl.querySelector('[name="message"');
+        if (messageField && 'value' in messageField) {
+          messageField.value = '';
+        }
+      });
+      addBlurValidation('message', [required], sendFormEl, 'textarea');
+    }
   }
 }
 

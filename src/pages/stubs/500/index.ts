@@ -14,17 +14,12 @@ class Stub500 extends Component {
   render(): void {
     const lang = model.locales.lang;
     const texts = TEXTS[lang] || TEXTS[LANG.RU];
-    const wrapper = document.createElement('main');
 
-    const html = stub500Template({
+    this.html = stub500Template({
       title: { text: capitalizeFirst(texts.broken) },
       styles,
     });
 
-    wrapper.classList.add(styles.wrapper);
-    wrapper.innerHTML = html;
-
-    this.element = wrapper;
     super.render();
   }
 }
