@@ -4,6 +4,7 @@
 }
 
 .form {
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,4 +26,8 @@
   button {
     width: 100%;
   }
+}
+
+.form-item {
+  width: 100%
 }

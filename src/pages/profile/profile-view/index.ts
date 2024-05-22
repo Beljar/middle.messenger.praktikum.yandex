@@ -21,11 +21,13 @@ class ProfileView extends Component {
       },
       styles,
     });
+
+    super.render();
+
     const editButtonEl = document.querySelector('#edit_button');
     editButtonEl?.addEventListener('click', () => {
       location.href = '/profile/edit';
     });
-    super.render();
   }
 }
 
