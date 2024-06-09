@@ -1,4 +1,4 @@
-import { ChatListItemDTO, client } from 'shared/client';
+import { ChatListItemDTO } from 'shared/client';
 import { HTTPTransportProxy } from 'shared/client/HTTPTransport/HTTPTransport';
 
 export interface IChatList {

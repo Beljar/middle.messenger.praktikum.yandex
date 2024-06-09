@@ -1,8 +1,8 @@
 import { IChatList } from 'entities/chat/model/chat-list';
+import { eventBus } from 'event-bus';
 import { Component } from 'shared/components/Component';
 import { formatDate } from 'shared/utils/formatDate';
 
-import { eventBus } from '../../../event-bus';
 import chatListTemplate from './chatList.hbs';
 import styles from './styles.module.scss';
 

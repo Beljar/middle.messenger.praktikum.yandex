@@ -1,7 +1,8 @@
-import { eventBus } from '../../../event-bus';
+import { eventBus } from 'event-bus';
+
 import { Component } from '../Component';
 
-export class Router extends Component {
+export class Router extends Component<{ route: string }> {
   pages: Record<string, Component>;
   constructor(pages: Record<string, Component>) {
     super();

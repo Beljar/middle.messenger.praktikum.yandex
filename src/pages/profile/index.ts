@@ -21,7 +21,10 @@ class Profile extends Component {
       .split('/')
       .reverse()
       .filter(Boolean);
-    router.setParent(this.parent);
+    if (this.parent) {
+      router.setParent(this.parent);
+    }
+
     const route = path.length < 2 ? 'view' : path[0];
     router.state = { route };
   }

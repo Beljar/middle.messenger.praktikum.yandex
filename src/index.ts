@@ -29,10 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!root) return;
   router.setParent(root);
 
-  const path = window.location.pathname
-    .trim()
-    .split('/')
-    .filter(Boolean) as (keyof typeof ROOTS)[];
+  const path = window.location.pathname.trim().split('/').filter(Boolean);
   const route = path[0] || 'login';
   router.state = { route };
 });

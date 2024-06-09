@@ -4,6 +4,7 @@ import './sendPanel/index';
 import './profilePanel/index';
 
 import { LANG } from 'constants';
+import { eventBus } from 'event-bus';
 import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
 import { getFormValues } from 'shared/utils/getFormValues';
@@ -12,7 +13,6 @@ import { required } from 'shared/utils/validation/rules';
 import { validateForm } from 'shared/utils/validation/validateForm';
 import { model } from 'stores/index';
 
-import { eventBus } from '../../event-bus';
 import { chat } from './chat/index';
 import { chatList } from './chatList/index';
 import chatsTemplate from './chats.hbs';
@@ -56,7 +56,6 @@ class Chats extends Component {
         ]);
         if (Object.values(errors).length) return;
         const values = getFormValues<{ message: string }>(SEND_FORM_ID);
-        console.log(values);
         eventBus.emit('chats:send', values.message);
         const messageField = sendFormEl.querySelector('[name="message"');
         if (messageField && 'value' in messageField) {

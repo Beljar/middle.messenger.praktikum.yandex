@@ -10,7 +10,9 @@ export const validateField = (
     `${type}[name="${fieldName}"`
   ) as HTMLInputElement;
   const value = inputEl.value;
-  let errEl = formEl?.querySelector(`div[error-for="${fieldName}"]`);
+  let errEl = formEl?.querySelector(
+    `div[error-for="${fieldName}"]`
+  ) as HTMLElement | null;
   if (!errEl) {
     errEl = document.createElement('div');
     errEl.setAttribute('error-for', fieldName);

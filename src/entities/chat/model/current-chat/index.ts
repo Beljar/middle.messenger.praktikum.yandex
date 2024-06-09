@@ -1,4 +1,4 @@
-import { ChatDetailDTO, client } from 'shared/client';
+import { ChatDetailDTO } from 'shared/client';
 import { HTTPTransportProxy } from 'shared/client/HTTPTransport/HTTPTransport';
 
 export interface ICurrentChat extends ChatDetailDTO {

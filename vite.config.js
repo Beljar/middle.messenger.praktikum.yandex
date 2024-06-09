@@ -21,6 +21,7 @@ export default defineConfig({
       stores: resolve(__dirname, './src/stores'),
       shared: resolve(__dirname, './src/shared'),
       constants: resolve(__dirname, './src/constants'),
+      'event-bus': resolve(__dirname, './src/event-bus'),
     },
   },
   plugins: [

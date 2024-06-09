@@ -7,24 +7,32 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
-// Самая простая версия. Реализовать штучку со всеми проверками им предстоит в конце спринта
-// Необязательный метод
-function queryStringify(data) {
+interface IOptions {
+  headers?: Record<string, string>;
+  method?: (typeof METHODS)[keyof typeof METHODS];
+  data?: object;
+  timeout?: number;
+}
+
+function queryStringify(data: object) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
   }
-  const keys = Object.keys(data);
+  const keys = Object.keys(data) as (keyof typeof data)[];
   return keys.reduce((result, key, index) => {
     return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
   }, '?');
 }
 
 interface IHTTPTransport {
-  get: (url: string, options: {}) => Promise<XMLHttpRequest>;
+  get: (url: string, options: IOptions) => Promise<XMLHttpRequest>;
+  post: (url: string, options: IOptions) => Promise<XMLHttpRequest>;
+  put: (url: string, options: IOptions) => Promise<XMLHttpRequest>;
+  delete: (url: string, options: IOptions) => Promise<XMLHttpRequest>;
 }
 
 class HTTPTransport implements IHTTPTransport {
-  get(url, options = {}) {
+  get(url: string, options: IOptions = {}) {
     return this.request(
       url,
       { ...options, method: METHODS.GET },
@@ -32,7 +40,7 @@ class HTTPTransport implements IHTTPTransport {
     );
   }
 
-  post(url, options = {}) {
+  post(url: string, options: IOptions = {}) {
     return this.request(
       url,
       { ...options, method: METHODS.POST },
@@ -40,7 +48,7 @@ class HTTPTransport implements IHTTPTransport {
     );
   }
 
-  put(url, options = {}) {
+  put(url: string, options: IOptions = {}) {
     return this.request(
       url,
       { ...options, method: METHODS.PUT },
@@ -48,7 +56,7 @@ class HTTPTransport implements IHTTPTransport {
     );
   }
 
-  delete(url, options = {}) {
+  delete(url: string, options: IOptions = {}) {
     return this.request(
       url,
       { ...options, method: METHODS.DELETE },
@@ -56,7 +64,7 @@ class HTTPTransport implements IHTTPTransport {
     );
   }
 
-  request(url, options = {}, timeout = 5000) {
+  request(url: string, options: IOptions = {}, timeout = 5000) {
     const { headers = {}, method, data } = options;
     return new Promise<XMLHttpRequest>(function (resolve, reject) {
       if (!method) {
@@ -70,7 +78,9 @@ class HTTPTransport implements IHTTPTransport {
       xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
 
       Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key]);
+        if (key in headers) {
+          xhr.setRequestHeader(key, headers[key]);
+        }
       });
 
       xhr.onload = function () {
@@ -86,13 +96,13 @@ class HTTPTransport implements IHTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
       }
     });
   }
 }
 
-const mockRequest = async (url, options = {}, timeout = 5000) => {
+const mockRequest = async (url: string, options: IOptions = {}) => {
   if (url === '/chats') {
     const response = await client.getChats();
     return { response, status: 400 } as XMLHttpRequest;
@@ -105,8 +115,14 @@ const mockRequest = async (url, options = {}, timeout = 5000) => {
       return { response, status: 400 } as XMLHttpRequest;
     }
     if (options.method === METHODS.POST) {
-      const response = await client.postMessage(options.data.message, chatId);
-      return { response, status: 400 } as XMLHttpRequest;
+      if (
+        options.data &&
+        'message' in options.data &&
+        typeof options.data.message === 'string'
+      ) {
+        const response = await client.postMessage(options.data.message, chatId);
+        return { response, status: 400 } as XMLHttpRequest;
+      }
     }
   }
 };
@@ -114,12 +130,18 @@ const mockRequest = async (url, options = {}, timeout = 5000) => {
 const transport = new HTTPTransport();
 
 export const HTTPTransportProxy = new Proxy(transport, {
-  get(target, prop, receiver) {
+  get(target, prop: keyof typeof transport) {
     if (prop === 'request') {
       return mockRequest;
     }
+    if (!(prop in target)) {
+      return;
+    }
     const origMethod = target[prop];
-    return function (...args) {
+    return function (
+      this: HTTPTransport,
+      ...args: [url: string, options?: IOptions | undefined]
+    ) {
       const result = origMethod.apply(this, args);
       return result;
     };
