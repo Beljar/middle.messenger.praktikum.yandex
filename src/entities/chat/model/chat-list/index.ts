@@ -1,4 +1,5 @@
 import { ChatListItemDTO, client } from 'shared/client';
+import { HTTPTransportProxy } from 'shared/client/HTTPTransport/HTTPTransport';
 
 export interface IChatList {
   isLoading: boolean;
@@ -18,7 +19,10 @@ class ChatList {
     this.data.currentChatId = currentChatId;
   }
   async fetchChatList() {
-    const chats = await client.getChats();
+    //const chats = await client.getChats();
+    const { response: chats } = await HTTPTransportProxy.get('/chats', {
+      method: 'get',
+    });
     this.data.chatList = chats;
     this.setIsLoading(false);
   }

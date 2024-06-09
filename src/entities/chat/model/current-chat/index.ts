@@ -1,4 +1,5 @@
 import { ChatDetailDTO, client } from 'shared/client';
+import { HTTPTransportProxy } from 'shared/client/HTTPTransport/HTTPTransport';
 
 export interface ICurrentChat extends ChatDetailDTO {
   isLoading: boolean;
@@ -27,13 +28,23 @@ class CurrentChat {
     this.data.id = id;
   }
   async fetchCurrentChat(id: string) {
-    const { messages } = await client.getChatById(id);
+    const {
+      response: { messages },
+    } = await HTTPTransportProxy.get(`/chats/${id}`);
     this.data.messages = messages;
     this.data.id = id;
     this.setIsLoading(false);
   }
   async postMessage(message: string) {
-    const newMessage = await client.postMessage(message, this.data.id);
+    const { response: newMessage } = await HTTPTransportProxy.post(
+      `/chats/${this.data.id}`,
+      {
+        data: {
+          message,
+        },
+      }
+    );
+
     if (!newMessage) return;
     const messages = [...this.data.messages, newMessage];
     this.data = {
