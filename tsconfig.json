@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "typeRoots": ["src/types"],
+    "baseUrl": "./src",
+    "paths": {
+      "shared/*": ["./shared/*"],
+      "stores/*": ["./stores/*"],
+      "partials/*": ["./partials/*"],
+      "pages/*": ["./pages/*"],
+      "event-bus/*": ["./event-bus/*"],
+      "entities/*": ["./entities/*"],
+      "constants/*": ["./constants/*"]
+    },
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}

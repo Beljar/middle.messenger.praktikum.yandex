@@ -1,0 +1,10 @@
+<div item-for={{name}} class={{className}}>
+    {{#if input}}
+        {{> input input }}
+        <div error-for={{name}} class="error-text"></div>
+    {{/if}}
+    {{#if textarea}}
+        {{> textarea textarea }}
+        <div error-for={{name}} class="error-text"></div>
+    {{/if}}
+</div>
