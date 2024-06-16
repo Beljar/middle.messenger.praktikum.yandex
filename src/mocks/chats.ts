@@ -1,4 +1,6 @@
-export const chatListMock = [
+import { ChatListItemDTO } from 'shared/client';
+
+export const chats: ChatListItemDTO[] = [
   {
     id: 'fd3b2ff8-7fb9-4d0f-ae83-53ca02d1a79a',
     author: 'Ema Hysom',

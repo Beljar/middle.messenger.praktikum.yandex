@@ -1,8 +1,8 @@
 export const profileMock = {
-  login: 'Киса',
+  login: 'Kisa',
   name: 'Ипполит',
   surname: 'Воробьянинов',
-  displayName: 'Барин из Парижу',
+  displayName: 'Барин-из-Парижу',
   email: 'chairs_12@mail.ru',
-  phone: '+7(985)555-66-78',
+  phone: '+79855556678',
 };

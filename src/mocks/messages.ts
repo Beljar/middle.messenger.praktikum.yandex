@@ -1,4 +1,6 @@
-export const chatMock = [
+import { MessageDTO } from 'shared/client';
+
+export const messages: MessageDTO[] = [
   {
     id: 'd17120b9-8077-466d-848c-417270110542',
     author: 'Lilias Angliss',

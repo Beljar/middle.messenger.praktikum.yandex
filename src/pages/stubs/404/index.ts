@@ -1,23 +1,27 @@
 import { LANG } from 'constants';
+import { Component } from 'shared/components/Component';
 import { capitalizeFirst } from 'shared/utils/capitalize-first';
-import { locales } from 'stores/locales';
+import { model } from 'stores/index';
 
-import stub404 from './stub404.hbs';
+import stub404Template from './stub404.hbs';
 import styles from './styles.module.scss';
 import { TEXTS } from './texts';
 
-export const Stub404 = () => {
-  const lang = locales.get().lang;
-  const texts = TEXTS[lang] || TEXTS[LANG.RU];
-  const wrapper = document.createElement('div');
+class Stub404 extends Component {
+  constructor() {
+    super();
+  }
+  render(): void {
+    const lang = model.locales.lang;
+    const texts = TEXTS[lang] || TEXTS[LANG.RU];
 
-  const html = stub404({
-    title: { text: capitalizeFirst(texts.nothingHere) },
-    styles,
-  });
+    this.html = stub404Template({
+      title: { text: capitalizeFirst(texts.nothingHere) },
+      styles,
+    });
 
-  wrapper.classList.add(styles.wrapper);
-  wrapper.innerHTML = html;
+    super.render();
+  }
+}
 
-  return wrapper;
-};
+export const stub404 = new Stub404();

@@ -15,11 +15,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      entities: resolve(__dirname, './src/entities'),
       pages: resolve(__dirname, './src/pages'),
       partials: resolve(__dirname, './src/partials'),
       stores: resolve(__dirname, './src/stores'),
       shared: resolve(__dirname, './src/shared'),
       constants: resolve(__dirname, './src/constants'),
+      'event-bus': resolve(__dirname, './src/event-bus'),
     },
   },
   plugins: [
